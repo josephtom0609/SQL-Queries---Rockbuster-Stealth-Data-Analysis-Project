@@ -1,0 +1,38 @@
+SELECT film_id, title, description
+FROM film
+WHERE title LIKE '%Uptown%';                             -- TO DISPLAY FILMS WHICH CONTAIN THE WORD 'UPTOWN' IN ANY POSITION
+
+SELECT film_id, title, description, length, rental_rate
+FROM film
+WHERE length > 120 AND rental_rate > 2.99;               -- TO DISPLAY FILMS WHICH HAVE FILM LENGTH MORE THAN 120 MINNUTES AND RENTAL RATE IS MORE THAN 2.99
+
+SELECT film_id, title, description, rental_duration
+FROM film
+WHERE rental_duration > 3 AND rental_duration < 7;       -- TO DISPLAY FILMS WHICH HAVE RENTAL DURATION BETWEEN 3 AND 7 DAYS (3 AND 7 ARE NOT IUNCLUSIVE)
+
+SELECT film_id, title, description, replacement_cost
+FROM film
+WHERE replacement_cost < 14.99;                          -- TO DISPLAY FILMS WHICH HAVE FILM REPLACEMENT COST LESS THAN 14.99
+
+SELECT film_id, title, description, rating
+FROM film
+WHERE rating IN ('G', 'PG');                             -- TO DISPLAY FILMS THAT HAVE FILM RATING AS PG OR G
+
+*************************************************************************************************************************************************
+
+SELECT rating, COUNT(film_id) AS count_of_movies
+FROM film
+WHERE rating IN ('G', 'PG')
+GROUP BY rating;                                         -- TO DISPLAY THE COUNT OF MOVIES WITH FILM RATING AS PG OR G
+
+SELECT rating, AVG(rental_rate) AS average_movie_rental_rate
+FROM film
+WHERE rating IN ('G', 'PG')
+GROUP BY rating;                                         -- TO DISPLAY THE AVERAGE RENTAL RATE OF MOVIES WITH FILM RATING AS PG OR G
+
+SELECT rating, 
+MAX(rental_duration) AS maximum_rental_duration, 
+MIN(rental_duration) AS minimum_rental_duration
+FROM film
+WHERE rating IN ('G', 'PG')
+GROUP BY rating;                                         -- TO DISPLAY THE MAXIMUM AND MINIMUM RENTAL DURATION OF MOVIES WITH FILM RATING AS PG OR G 
