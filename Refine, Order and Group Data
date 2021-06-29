@@ -1,3 +1,4 @@
+
 SELECT film_id, title 
 FROM film;                                     -- TO DISPLAY ALL THE FILM IDS AND TITLES IN THE FILM TABLE
 
@@ -33,5 +34,4 @@ SELECT rating, MIN(rental_duration) AS MINIMUM_RENTAL_DUARTION, MAX(rental_durat
 FROM film
 GROUP BY rating;                               -- TO DISPLAY THE MINIMUM AND MAXIMUM RENTAL DURATIONS FOR EACH RATING CATEGORY 
 
-*************************************************************************************************************************
 
