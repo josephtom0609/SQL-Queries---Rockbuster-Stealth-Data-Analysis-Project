@@ -1,0 +1,75 @@
+SELECT D.country_id, D.country, COUNT(A.*) AS number_of_customers
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id	
+INNER JOIN country D ON C.country_id = D.country_id
+GROUP BY D.country_id
+ORDER BY number_of_customers DESC
+LIMIT 10;                                                -- TO FIND THE TOP 10 COUNTRIES FOR ROCKBUSTER IN TERMS OF CUSTOMER NUMBERS
+
+---------------------------------------------------------------------------------------------------------------
+
+SELECT C.city, COUNT(A.*) AS customer_count
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id	
+INNER JOIN country D ON C.country_id = D.country_id
+WHERE C.country_id IN(SELECT J.country_id
+                      FROM country J
+                      INNER JOIN city K ON J.country_id = K.country_id
+                      INNER JOIN address L ON K.city_id = L.city_id	
+                      INNER JOIN customer M ON L.address_id = M.address_id
+                      GROUP BY J.country_id
+                      ORDER BY COUNT(M.*) DESC
+                      LIMIT 10)
+GROUP BY C.city
+ORDER BY customer_count DESC
+LIMIT 10;
+
+(OR)
+
+SELECT J.city, COUNT(L.customer_id) AS num_of_customers
+FROM city J
+INNER JOIN address K ON J.city_id = K.city_id
+INNER JOIN customer L ON K.address_id = L.address_id
+RIGHT JOIN (SELECT D.country_id, D.country, COUNT(A.customer_id) AS number_of_customers
+			FROM customer A
+			INNER JOIN address B ON A.address_id = B.address_id
+			INNER JOIN city C ON B.city_id = C.city_id	
+			INNER JOIN country D ON C.country_id = D.country_id
+			GROUP BY D.country_id
+			ORDER BY number_of_customers DESC
+			LIMIT 10) AS top_10_countries ON top_10_countries.country_id = J.country_id
+GROUP BY J.city
+ORDER BY num_of_customers DESC
+LIMIT 10;                                                -- TO FIND THE TOP 10 CITIES WITHIN THE TOP 10 COUNTRIES FOR ROCKBUSTER IN TERMS OF CUSTOMER NUMBERS
+
+----------------------------------------------------------------------------------------------------------------------
+
+SELECT P.customer_id, Q.first_name, Q.last_name, S.city, T.country, SUM(P.amount) AS Total_Amount_Paid
+FROM payment P
+INNER JOIN customer Q ON P.customer_id = Q.customer_id
+INNER JOIN address R ON Q.address_id = R.address_id
+INNER JOIN city S ON R.city_id = S.city_id
+INNER JOIN country T ON S.country_id = T.country_id
+RIGHT JOIN 
+			(SELECT J.city, COUNT(L.customer_id) AS num_of_customers
+			 FROM city J
+			 INNER JOIN address K ON J.city_id = K.city_id
+			 INNER JOIN customer L ON K.address_id = L.address_id
+			 RIGHT JOIN (SELECT D.country_id, D.country, COUNT(A.customer_id) AS number_of_customers
+						 FROM customer A
+						 INNER JOIN address B ON A.address_id = B.address_id
+						 INNER JOIN city C ON B.city_id = C.city_id	
+						 INNER JOIN country D ON C.country_id = D.country_id
+						 GROUP BY D.country_id
+						 ORDER BY number_of_customers DESC
+						 LIMIT 10) AS top_10_countries ON top_10_countries.country_id = J.country_id
+			 GROUP BY J.city
+			 ORDER BY num_of_customers DESC
+			 LIMIT 10) 
+						AS top_10_cities ON S.city = top_10_cities.city
+GROUP BY P.customer_id, Q.first_name, Q.last_name, S.city, T.country
+ORDER BY Total_Amount_Paid DESC
+LIMIT 5;                                                   -- TO FIND THE TOP 5 CUSTOMERS WITHIN THE TOP 10 CITIES WHO HAVE PAID THE HIGHEST TOTAL AMOUNTS TO ROCKBUSTER 
+
