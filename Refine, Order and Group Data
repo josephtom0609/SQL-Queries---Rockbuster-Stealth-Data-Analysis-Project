@@ -1,27 +1,37 @@
 SELECT film_id, title 
-FROM film;              -- TO DISPLAY ALL THE FILM IDS AND TITLES IN THE FILM TABLE
+FROM film;                                     -- TO DISPLAY ALL THE FILM IDS AND TITLES IN THE FILM TABLE
 
 EXPLAIN		 
 SELECT film_id, title 
-FROM film;             -- TO FIND THE COST OF THIS QUERY
+FROM film;                                     -- TO FIND THE COST OF THIS QUERY
 
 EXPLAIN
 SELECT * 
-FROM film;             -- TO FIND THE COST OF THIS QUERY
+FROM film;                                     -- TO FIND THE COST OF THIS QUERY
 
 *************************************************************************************************************************
 
 SELECT title, release_year, rental_rate
 FROM film
-ORDER BY rental_rate DESC;                  -- TO DISPLAY ALL FILM TITLES SORTED BY HIGHEST TO LOWEST RENTAL RATE
+ORDER BY rental_rate DESC;                     -- TO DISPLAY ALL FILM TITLES SORTED BY HIGHEST TO LOWEST RENTAL RATE
 
 SELECT title, release_year, rental_rate
 FROM film
-ORDER BY title ASC;                          -- TO DISPLAY ALL FILM TITLES SORTED BY TITLE FROM A-Z
+ORDER BY title ASC;                            -- TO DISPLAY ALL FILM TITLES SORTED BY TITLE FROM A-Z
 
 SELECT title, release_year, rental_rate
 FROM film
-ORDER BY release_year DESC;                   -- TO DISPLAY ALL FILM TITLES SORTED BY MOST RECENT RELEASE YEAR
+ORDER BY release_year DESC;                     -- TO DISPLAY ALL FILM TITLES SORTED BY MOST RECENT RELEASE YEAR
+
+*************************************************************************************************************************
+
+SELECT rating, AVG(rental_rate) AS AVERAGE_RENTAL_RATE
+FROM film
+GROUP BY rating;                               -- TO DISPLAY THE AVERAGE RENTAL RATE FOR EACH RATING CATEGORY    
+
+SELECT rating, MIN(rental_duration) AS MINIMUM_RENTAL_DUARTION, MAX(rental_duration) AS MAXIMUM_RENTAL_DURATION
+FROM film
+GROUP BY rating;                               -- TO DISPLAY THE MINIMUM AND MAXIMUM RENTAL DURATIONS FOR EACH RATING CATEGORY 
 
 *************************************************************************************************************************
 
