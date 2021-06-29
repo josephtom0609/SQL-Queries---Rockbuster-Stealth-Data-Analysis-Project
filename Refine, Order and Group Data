@@ -1,4 +1,3 @@
-
 SELECT film_id, title 
 FROM film;                                     -- TO DISPLAY ALL THE FILM IDS AND TITLES IN THE FILM TABLE
 
