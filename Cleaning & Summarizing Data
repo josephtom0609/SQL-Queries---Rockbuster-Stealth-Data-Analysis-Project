@@ -1,0 +1,49 @@
+SELECT title, release_year, language_id, rental_duration, COUNT(*)
+FROM film
+GROUP BY title, release_year, language_id, rental_duration
+HAVING COUNT(*) >1;                                                -- TO CHECK FOR DUPLICATE ROWS IN FILM TABLE
+
+  
+SELECT customer_id, store_id, first_name, last_name, COUNT(*)
+FROM customer
+GROUP BY customer_id, store_id, first_name, last_name
+HAVING COUNT(*) >1;                                                -- TO CHECK FOR DUPLICATE ROWS IN CUSTOMER TABLE
+
+***********************************************************************************************************************************************************
+
+SELECT MIN(rental_rate) AS min_rent,
+       MAX(rental_rate) AS max_rent,
+       AVG(rental_rate) AS avg_rent
+FROM film;                                                         -- TO DISPLAY THE MAXIMUM, MINIMUM AND AVERAGE RENTAL RATE OF ALL MOVIES IN FILM TABLE
+
+SELECT MIN(replacement_cost) AS min_repl_cost,
+       MAX(replacement_cost) AS max_repl_cost,
+       AVG(replacement_cost) AS avg_repl_cost
+FROM film;                                                         -- TO DISPLAY THE MAXIMUM, MINIMUM AND AVERAGE REPLACEMENT COST OF ALL MOVIES IN FILM TABLE
+
+SELECT MIN(rental_duration) AS min_rental_duration,
+       MAX(rental_duration) AS max_rental_duration,
+       AVG(rental_duration) AS avg_rental_duration
+FROM film;                                                         -- TO DISPLAY THE MAXIMUM, MINIMUM AND AVERAGE RENTAL DURATION OF ALL MOVIES IN FILM TABLE
+
+SELECT MIN(length) AS min_length,
+       MAX(length) AS max_length,
+       AVG(length) AS avg_length
+FROM film;                                                         -- TO DISPLAY THE MAXIMUM, MINIMUM AND AVERAGE MOVIE LENGTH OF ALL MOVIES IN FILM TABLE
+
+SELECT mode() WITHIN GROUP (ORDER BY release_year)
+	AS modal_value
+	FROM film;                                                       -- TO DISPLAY THE MODE VALUE OF RELEASE YEAR IN FILM TABLE
+	 
+SELECT mode() WITHIN GROUP (ORDER BY first_name)
+	AS modal_value
+	FROM customer;                                                   -- TO DISPLAY THE MODE VALUE OF FIRST NAME IN FILM TABLE
+	
+SELECT mode() WITHIN GROUP (ORDER BY last_name)
+	AS modal_value
+	FROM customer;                                                   -- TO DISPLAY THE MODE VALUE OF LAST NAME IN FILM TABLE
+	
+SELECT mode() WITHIN GROUP (ORDER BY email)
+AS modal_value
+FROM customer;                                                     -- TO DISPLAY THE MODE VALUE OF EMAIL IN FILM TABLE
+
