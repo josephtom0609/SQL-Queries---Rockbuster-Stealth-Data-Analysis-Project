@@ -1,46 +1,42 @@
 SELECT * 
-FROM category;             -- TO FIND OUT WHAT FILM GENRES EXIST IN THE CATEGORY TABLE
-
+FROM category;                  -- TO FIND OUT WHAT FILM GENRES EXIST IN THE CATEGORY TABLE
 
 INSERT INTO category(name) 
-VALUES('Thriller');         -- TO INSERT 'THRILLER' GENRE INTO CATEGORY TABLE
-
-
-INSERT INTO category(name)
-VALUES('Crime');            -- TO INSERT 'CRIME' GENRE INTO CATEGORY TABLE
-
+VALUES('Thriller');             -- TO INSERT 'THRILLER' GENRE INTO CATEGORY TABLE
 
 INSERT INTO category(name)
-VALUES('Mystery');          -- TO INSERT 'MYSTERY' GENRE INTO CATEGORY TABLE
-
-
-INSERT INTO category(name)
-VALUES('Romance');          -- TO INSERT 'ROMANCE' GENRE INTO CATEGORY TABLE
-
+VALUES('Crime');                -- TO INSERT 'CRIME' GENRE INTO CATEGORY TABLE
 
 INSERT INTO category(name)
-VALUES('War');              -- TO INSERT 'WAR' GENRE INTO CATEGORY TABLE
+VALUES('Mystery');              -- TO INSERT 'MYSTERY' GENRE INTO CATEGORY TABLE
 
+INSERT INTO category(name)
+VALUES('Romance');              -- TO INSERT 'ROMANCE' GENRE INTO CATEGORY TABLE
+
+INSERT INTO category(name)
+VALUES('War');                  -- TO INSERT 'WAR' GENRE INTO CATEGORY TABLE
+
+*************************************************************************************************************************
 
 SELECT film_id 
 FROM film
-WHERE title = 'African Egg';   -- TO FIND THE FILM_ID FOR THE MOVIE 'AFRICAN EGG'
-
+WHERE title = 'African Egg';                  -- TO FIND THE FILM_ID FOR THE MOVIE 'AFRICAN EGG'
 
 SELECT category_id
 FROM film_category
-WHERE film_id = '5';        -- TO FIND THE CATEGORY ID FOR THE FILM ID = 5
-
+WHERE film_id = '5';                          -- TO FIND THE CATEGORY ID FOR THE FILM ID = 5
 
 UPDATE film_category
 SET category_id = '17'
-WHERE film_id = '5' AND category_id = '8';  -- TO UPDATE THE CATEGORY ID OF THE MOVIE 'AFRICAN EGG' IN THE FILM CATEGORY TABLE
+WHERE film_id = '5' AND category_id = '8';    -- TO UPDATE THE CATEGORY ID OF THE MOVIE 'AFRICAN EGG' IN THE FILM CATEGORY TABLE
 
+*************************************************************************************************************************
 
 DELETE
 FROM category
-WHERE name = 'Mystery';       -- TO DELETE THE ROWS HAVING CATEGORY AS 'MYSTERY'
+WHERE name = 'Mystery';                       -- TO DELETE THE ROWS HAVING CATEGORY AS 'MYSTERY'
 
+*************************************************************************************************************************
 
 CREATE TABLE EMPLOYEES
  (
@@ -50,6 +46,6 @@ contact_number VARCHAR(30),
 designation_id INT,
 last_update TIMESTAMP NOT NULL,
 CONSTRAINT employee_pkey PRIMARY KEY (employee_id)    
-);                                                     -- TO CREATE A TABLE WHICH WILL STORE EMPLOYEE DETAILS
+);                                                    -- TO CREATE A TABLE WHICH WILL STORE EMPLOYEE DETAILS
 
 
