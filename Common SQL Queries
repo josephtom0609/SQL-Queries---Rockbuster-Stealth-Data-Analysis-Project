@@ -49,7 +49,7 @@ name VARCHAR(50),
 contact_number VARCHAR(30),
 designation_id INT,
 last_update TIMESTAMP NOT NULL,
-CONSTRAINT employee_pkey PRIMARY KEY (employee_id)    -- TO CREATE A TABLE WHICH WILL STORE EMPLOYEE DETAILS
-);
+CONSTRAINT employee_pkey PRIMARY KEY (employee_id)    
+);                                                     -- TO CREATE A TABLE WHICH WILL STORE EMPLOYEE DETAILS
 
 
