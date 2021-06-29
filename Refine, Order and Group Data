@@ -1,0 +1,27 @@
+SELECT film_id, title 
+FROM film;              -- TO DISPLAY ALL THE FILM IDS AND TITLES IN THE FILM TABLE
+
+EXPLAIN		 
+SELECT film_id, title 
+FROM film;             -- TO FIND THE COST OF THIS QUERY
+
+EXPLAIN
+SELECT * 
+FROM film;             -- TO FIND THE COST OF THIS QUERY
+
+*************************************************************************************************************************
+
+SELECT title, release_year, rental_rate
+FROM film
+ORDER BY rental_rate DESC;                  -- TO DISPLAY ALL FILM TITLES SORTED BY HIGHEST TO LOWEST RENTAL RATE
+
+SELECT title, release_year, rental_rate
+FROM film
+ORDER BY title ASC;                          -- TO DISPLAY ALL FILM TITLES SORTED BY TITLE FROM A-Z
+
+SELECT title, release_year, rental_rate
+FROM film
+ORDER BY release_year DESC;                   -- TO DISPLAY ALL FILM TITLES SORTED BY MOST RECENT RELEASE YEAR
+
+*************************************************************************************************************************
+
