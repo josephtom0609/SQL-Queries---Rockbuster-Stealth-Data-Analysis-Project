@@ -36,3 +36,4 @@ MIN(rental_duration) AS minimum_rental_duration
 FROM film
 WHERE rating IN ('G', 'PG')
 GROUP BY rating;                                         -- TO DISPLAY THE MAXIMUM AND MINIMUM RENTAL DURATION OF MOVIES WITH FILM RATING AS PG OR G 
+
